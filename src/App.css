@@ -1,0 +1,191 @@
+section > ul > li > article {
+    background-color: tomato;
+    display: flex;
+    flex-flow: column;
+    min-width: 70%;
+}
+
+article > p {
+    background-color: greenyellow;
+  line-height: 200%;
+}
+
+li {
+    display: flex;
+    list-style: none;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul {
+    justify-content: space-evenly;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav > button {
+    height: 3vh;
+    margin-left: 1vw;
+}
+
+header > h1 {
+    display: flex;
+    justify-content: center;
+}
+
+h1 > a {
+    color: black;
+}
+
+section > form {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+section > form > * {
+    display: flex;
+    margin: 0.6vw;
+    padding: 0.2vw 1vw;
+    justify-content: center;
+}
+
+label {
+    margin: 0.5vw;
+}
+
+fieldset > button {
+    margin-left: 0.5vw;
+}
+
+main > section > div {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+}
+
+.buttons > button {
+    margin-right: 0.5vw;
+}
+
+.comInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2vw;
+}
+
+.comInput > div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.comInput > form > input{
+    margin-top: 0.6vw;
+    margin-left: 2vw;
+}
+
+.comInput > div > * {
+    margin-bottom: 1.3vw;
+}
+
+main > footer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+
+/*
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, footer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+nav {
+    position: relative;
+    right: 0;
+    left: 80%;
+    bottom: 0;
+    width: 20%;
+}
+
+nav ul {
+    display: flex;
+    width: 100%;
+    flex-direction: row-reverse;
+    justify-content: space-around;    
+    position: relative;
+}
+
+nav ul li {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    background-color: lightgreen;
+    border: 2px solid;
+    border-color: green;
+}
+
+section {
+    position: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 25%;
+    min-width: 25%;
+}
+
+section ul {
+   width: 100%;
+   height: 10em;
+   background: rgb(33, 178, 191);
+   border-top-left-radius: 10px;
+   border-top-right-radius: 30px;
+   border-bottom-right-radius: 50px;
+   border-bottom-left-radius: 100px;
+   justify-content: center;
+   align-items: center;
+}
+
+li {
+    list-style: none;
+    display: flex; 
+    justify-content: flex-start;
+}
+
+nav {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+}
+*/
