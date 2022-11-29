@@ -12,6 +12,23 @@ export const getAllServs = async () => {
     return json.info;
 };
 
+export const getServ = async (id, token) => {
+    console.log("ID TOKEN", id, token)
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}serv/${id}`, {
+        headers: {
+            Authorization: token,
+        },
+    });
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+    
+    return json.info;
+};
+
 export const registerUserService = async ({email, password}) => {
     const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}user`, {
         method: 'POST',
@@ -46,12 +63,13 @@ export const logUserService = async ({email, password}) => {
     return json.token;
 };
 
-export const getMyDataService = async ({token}) => {
+export const getMyUserData = async ({token}) => {
     const tDec = jwt_decode(token);
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}user/${tDec.id}`, {
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}userParams`, {
         headers: {
             Authorization: token,
         },
+        body: JSON.stringify(tDec.id),
     });
 
     const json = await response.json();
@@ -187,8 +205,7 @@ export const uploadFile = async (idJob, idUs, file, name, token) => {
     const requestOptions = {
         method: 'POST',
         headers: { 
-            Authorization: `${token}`,
-            'Content-Type': 'multipart/form-data' 
+            Authorization: `${token}`
         },
         body: JSON.stringify({ijob: idJob, idus: idUs, file: file, name: name}),
     };
@@ -220,4 +237,26 @@ export const updateUser = async (alias, bio, photo, fecNac, token) => {
     }
     
     return json;
+};
+
+export const checkIfSolved = async (id, token) => {    
+    
+    const requestOptions = {
+        method: 'GET',
+        headers: { 
+            Authorization: `${token}`,
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({id: id}),
+    };
+
+    const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}solved`, requestOptions);
+
+    const json = await response.json();
+
+    if(!response.ok) {
+        throw new Error(json.message);
+    }
+
+    return json.message;
 };

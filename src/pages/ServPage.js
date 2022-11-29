@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import { Service } from '../components/Service';
 import { useContext } from "react";
 import { AuthContext } from "../contex/AuthContext";
@@ -12,11 +12,42 @@ import { ComInput } from "../components/ComInput";
 import { ComList } from "../components/ComList";
 import { useComms } from "../hooks/useComms";
 import { useJobs } from "../hooks/useJobs";
+import { cardActionsClasses } from "@mui/material";
+import { useServ } from '../hooks/useServ';
+import { ErrorMessage } from "../components/ErrorMessage";
 //import { tabScrollButtonClasses } from "@mui/material";
 
 export const ServPage = () => {
-    const jId = localStorage.getItem('idJob');
+
+    // 1 leer el id del servicio desde params (id)
+    const {id} = useParams();
+    
     const { user, token } = useContext(AuthContext);
+    
+    // 2 hacer una peticion al back pidiendo los datos del servicio id (con nombre usuario o email)
+    // useEffect
+    const {serv, error, loading} = useServ(id, token);
+
+    if(loading) return <p>Cargando datos servicio...</p>;
+    if(error) return <ErrorMessage message={error} />;
+    
+    return (
+        <main>
+            <section>
+                {user && serv ?
+                (<h2>Servicio</h2>) : null
+}
+            </section>
+        </main>
+    );
+
+
+    //const { servs, currentUser, items, loading, error } = await useServs();
+    // 3 pintar los datos
+
+    /*
+    const jId = localStorage.getItem('idJob');
+   
     const serv = useLocation();
     const [ disabledDel, setDisabledDel ] = useState(true);
     const [ disabledRes, setDisabledRes ] = useState(true);
@@ -91,37 +122,40 @@ export const ServPage = () => {
     };
 
     return user  ? (
-        <section>
-            <h1>Service {serv.state.servId}</h1>
-            <Service service={{nombre_servicio: serv.state.servName,
-            description: serv.state.servDesc,
-            id_user: serv.state.servUs
+        <main>
+            <section>
+                <h1>Service {serv.state.servId}</h1>
+                <Service service={{nombre_servicio: serv.state.servName,
+                description: serv.state.servDesc,
+                id_user: serv.state.servUs
             }}/>
-            <div className='buttons'>
-                <Link to={{pathname: '/'}} style={{textDecoration: 'none'}}> 
-                    <Button variant="outlined" disabled={disabledDel} 
-                    startIcon={<DeleteIcon />} color="error" onClick={handleDeleteClick}>
-                        Borrar
-                    </Button>                       
-                </Link>
-                            
-                <Button variant="outlined" disabled={disabledRes} 
-                    startIcon={<CheckCircleOutlineIcon />} color="success" onClick={handleResolveClick}>
-                    Resolver
-                </Button> 
+                <div className='buttons'>
+                    <Link to={{pathname: '/'}} style={{textDecoration: 'none'}}> 
+                        <Button variant="outlined" disabled={disabledDel} 
+                        startIcon={<DeleteIcon />} color="error" onClick={handleDeleteClick}>
+                            Borrar
+                        </Button>                       
+                    </Link>
+                                
+                    <Button variant="outlined" disabled={disabledRes} 
+                        startIcon={<CheckCircleOutlineIcon />} color="success" onClick={handleResolveClick}>
+                        Resolver
+                    </Button> 
 
-                <Button variant="outlined" disabled={disabledAcc} 
-                    startIcon={<AssignmentIcon />} color="warning" onClick={handleAcceptClick}>
-                    Aceptar Trabajo
-                </Button>
-            </div>
-            <ComInput servId={serv.state.servId}/>
-            <ComList comms={comms}/>
-        </section>
+                    <Button variant="outlined" disabled={disabledAcc} 
+                        startIcon={<AssignmentIcon />} color="warning" onClick={handleAcceptClick}>
+                        Aceptar Trabajo
+                    </Button>
+                </div>
+                <ComInput servId={serv.state.servId}/>
+                <ComList comms={comms}/>
+            </section>
+        </main>
     ) : (
-        <>
+        <main>
             <p>No puedes ver los detalles de un servicio</p>
             <p>si no te has loggeado todavía...</p>
-        </>
+        </main>
     );
+    */
 };

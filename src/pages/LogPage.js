@@ -16,6 +16,7 @@ export const LogPage = () => {
 
         try {
             const data = await logUserService({email, password});
+            console.log(data)
             login(data);
             navigate('/');
         } catch (error) {
@@ -24,20 +25,18 @@ export const LogPage = () => {
     };
 
     return (
-        <section>
-            <h1>Login</h1>
-            <form onSubmit={handleForm}>
-                <fieldset>
+        <main className="centered">
+            <section class="userMode">
+                <h2>Login</h2>
+                <form onSubmit={handleForm}>
                     <label htmlFor='email'>Email</label>
                     <input type='email' id='email' name='email' required onChange={(e) => setEmail(e.target.value)}/>
-                </fieldset>
-                <fieldset>
                     <label htmlFor='password'>Password</label>
                     <input type='password' id='password' name='password' required onChange={(e) => setPassword(e.target.value)}/>
-                </fieldset>
                 <button>LogIn</button>
-            </form>            
+                </form>            
             {error ? <p>{error}</p> : null}
-        </section>
+            </section>
+        </main>
     );
 };

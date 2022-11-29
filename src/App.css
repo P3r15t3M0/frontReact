@@ -1,191 +1,91 @@
-section > ul > li > article {
-    background-color: tomato;
-    display: flex;
-    flex-flow: column;
-    min-width: 70%;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-article > p {
-    background-color: greenyellow;
-  line-height: 200%;
-}
-
-li {
-    display: flex;
-    list-style: none;
-}
-
-section {
+div#root {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+}
+
+div#root > header {
+    text-align: center;
+    background-color: gray;
+    height: 60px;  
+    display: flex;
+    flex-direction: column;
 }
 
 ul {
-    justify-content: space-evenly;
-}
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-nav > button {
-    height: 3vh;
-    margin-left: 1vw;
-}
-
-header > h1 {
-    display: flex;
-    justify-content: center;
-}
-
-h1 > a {
-    color: black;
-}
-
-section > form {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-}
-
-section > form > * {
-    display: flex;
-    margin: 0.6vw;
-    padding: 0.2vw 1vw;
-    justify-content: center;
-}
-
-label {
-    margin: 0.5vw;
-}
-
-fieldset > button {
-    margin-left: 0.5vw;
-}
-
-main > section > div {
-    display: flex;
-    flex-direction: row;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-around;
-}
-
-.buttons > button {
-    margin-right: 0.5vw;
-}
-
-.comInput {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2vw;
-}
-
-.comInput > div {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.comInput > form > input{
-    margin-top: 0.6vw;
-    margin-left: 2vw;
-}
-
-.comInput > div > * {
-    margin-bottom: 1.3vw;
-}
-
-main > footer {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 0;
-}
-
-
-/*
-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-h1, footer {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
-nav {
-    position: relative;
-    right: 0;
-    left: 80%;
-    bottom: 0;
-    width: 20%;
+    list-style: none;
 }
 
 nav ul {
     display: flex;
-    width: 100%;
-    flex-direction: row-reverse;
-    justify-content: space-around;    
-    position: relative;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
-nav ul li {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    background-color: lightgreen;
-    border: 2px solid;
-    border-color: green;
+div#root > main {
+    flex-grow: 1;
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-section {
-    position: center;
+div#root > main.centered {
+    display: grid;
+    place-content: center;
+}
+
+div#root > main.centered > section {
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+div#root > main > section > h2 {
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+div#root > main > section > form {
     display: flex;
     flex-direction: column;
-    max-width: 25%;
-    min-width: 25%;
 }
 
-section ul {
-   width: 100%;
-   height: 10em;
-   background: rgb(33, 178, 191);
-   border-top-left-radius: 10px;
-   border-top-right-radius: 30px;
-   border-bottom-right-radius: 50px;
-   border-bottom-left-radius: 100px;
-   justify-content: center;
-   align-items: center;
+label {
+    margin-top: 1rem;
 }
 
-li {
-    list-style: none;
-    display: flex; 
-    justify-content: flex-start;
+button {
+    margin-top: 1rem;
+    padding: 0.2rem;
 }
 
-nav {
+ul.listServices {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+ul.listServices li {
+    border: 1px solid black ;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+div#root > footer {
     display: flex;
-    align-content: center;
+    background-color: black;
+    color: white;
     justify-content: center;
+    padding: 0.7rem;
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 2rem;
+a {
+    text-decoration: none;
+    color: black;
 }
-*/

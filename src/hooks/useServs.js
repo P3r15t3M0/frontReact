@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { getAllServs } from '../services';
 
 const useServs = () => {
+    // FIRMA Que el back devuelva tambien username, 
+    // email, resuelto o no y numero commentarios de cada servicio
     const [servs, setServs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
@@ -30,4 +32,4 @@ const useServs = () => {
     return { servs, loading, error };
 }
 
-export default useServs;
+export { useServs };

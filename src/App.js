@@ -12,7 +12,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 
 function App() {
   return (
-    <main className="App">
+    <>
       < Header />
         <Routes>
           <Route path='/' element={< HomePage />} />
@@ -22,7 +22,7 @@ function App() {
           <Route path='*' element={< NotFoundPage />} />
         </Routes>
       < Footer />
-    </main>
+    </>
   );
 }
 

@@ -31,11 +31,12 @@ export const ComInput =  (servId) => {
     const handleUpInput = async (e) => {
         try {
             //setUpFile(upFile.split(String.fromCharCode(92))[2]);
+            console.log('form: ', upFile.split(String.fromCharCode(92))[2]);
             let data = new FormData(e.target);
             data.append("path", path);
             setDat(...data);
             //e.target.reset();
-            console.log(dat);
+            console.log('data', dat);
 
             //TERMINAR
 
@@ -54,7 +55,7 @@ export const ComInput =  (servId) => {
         }
     };
 
- 
+
     return (
         <div className='comInput'>
             <form className="new-tweet" onSubmit={handleUpInput}>
