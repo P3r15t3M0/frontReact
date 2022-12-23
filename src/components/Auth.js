@@ -8,7 +8,7 @@ export const Auth = () => {
     return user ? (
         <>
             <p>
-                Logged in as {user.info[0].email}            
+                Logged in as <Link to={'/user'}>{user.info[0].email}</Link>
             </p>
             <button onClick={() => logout()}>LogOut</button>
         </>

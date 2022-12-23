@@ -30,7 +30,7 @@ export const RegPage = () => {
     return (
         <main className="centered">
 
-        <section class="userMode">
+        <section className="userMode">
             <h2>Register</h2>
             <form onSubmit={handleForm}>
                     <label htmlFor='email'>Email</label>

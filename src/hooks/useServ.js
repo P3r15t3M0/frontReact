@@ -1,32 +1,30 @@
-import { useEffect, useState } from 'react';
-import { getServ } from '../services';
+import { useEffect, useState } from "react";
+import { getServ } from "../services";
 
 const useServ = (id, token) => {
-    const [serv, setServ] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState("");
+  const [serv, setServ] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-    useEffect(() => {
-        const loadServ = async () => {
-            try {
-                setLoading(true);
+  //console.log("ID Y TOKEN =====>>>", id, token);
 
-                const data = await getServ(id, token);
-                setServ(data);
+  useEffect(() => {
+    const loadServ = async () => {
+      try {
+        setLoading(true);
+        const data = await getServ(id, token);
+        setServ(data);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-            } catch (error) {
-                setError(error.message);
+    loadServ();
+  }, [id, token]);
 
-            } finally {
-                setLoading(false);
-            }
-        }
-
-        loadServ();
-
-    }, []);
-
-    return { serv, loading, error };
-}
+  return { serv, loading, error };
+};
 
 export { useServ };

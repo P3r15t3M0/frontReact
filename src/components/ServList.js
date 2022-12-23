@@ -12,9 +12,9 @@ export const ServList = ({servs}) => {
         {servs.map(serv =>
         <li key={serv.id_service}>
             {user ? (
-                <Link to={{pathname: `/serv/${serv.id_service}`}}>
-                <Service service={serv} />
-            </Link>
+                <Link to={`/serv/${serv.id_service}`}>
+                    <Service service={serv} />
+                </Link>
             ) : (    
                 <Service service={serv} />
             )}

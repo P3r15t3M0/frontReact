@@ -10,8 +10,8 @@ export const useJobs = (idU, idS, token) => {
             try {
                 const data = await jobChecker(idU, idS, token);
                 setJobs(data);
-                console.log('jobs', jobs);
-                console.log('data', data);
+                //console.log('jobs', jobs);
+                //console.log('data', data);
 
             } catch (error) {
                 setErrorJob(error.message);

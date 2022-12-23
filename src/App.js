@@ -7,6 +7,7 @@ import { RegPage } from './pages/RegPage';
 import { LogPage } from './pages/LogPage';
 import { ServPage } from './pages/ServPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { ModUserPage} from './pages/ModUserPage';
 
 //FALTA LA PAGINA DE MODIFICAR USUARIO
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/register' element={< RegPage />} />
           <Route path='/login' element={< LogPage />} />
           <Route path='/serv/:id' element={< ServPage/>} />
+          <Route path='/user' element={<ModUserPage/>} />
           <Route path='*' element={< NotFoundPage />} />
         </Routes>
       < Footer />

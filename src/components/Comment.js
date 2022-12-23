@@ -1,7 +1,10 @@
 export const Comment = ({ comment }) => {
-    return (
-        <article>
-            <p>usuario {comment.id_user} dijo: {comment.comment}</p>
-        </article>
-    );
+  return (
+    <article>
+      <p>
+        <b>{comment.alias ? comment.alias : comment.email} dijo: </b>
+        {comment.comment}
+      </p>
+    </article>
+  );
 };
