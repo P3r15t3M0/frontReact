@@ -4,7 +4,7 @@ export const Fich = ({ fich }) => {
   return (
     <article>
       <p>
-        <b>Subido por:</b> {fich.id_user}
+        <b>Subido por:</b> {fich.alias ? fich.alias : fich.email}
         <a href={`/${path}`} download={`${fich.fich_path}`}>
           <img
             src={`${process.env.REACT_APP_BACKEND_ROUTE}${path}`}

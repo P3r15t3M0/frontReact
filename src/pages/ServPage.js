@@ -81,11 +81,13 @@ export const ServPage = () => {
   };
 
   const handleUploadFile = async () => {
-    console.log(file);
+    //console.log(file);
     const response = await uploadFile(id, user.info[0].id_user, file, token);
+    window.location.reload();
+    return false;
   };
 
-  console.log("SERV::::::::::>", serv);
+  //console.log("SERV::::::::::>", serv);
 
   return (
     <main>

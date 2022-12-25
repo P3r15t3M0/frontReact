@@ -43,11 +43,6 @@ export const NewService = () => {
       const id = user.info[0].id_user;
       //console.log("FORMDATA: ", formData);
       //console.log("FILE: ", file);
-      console.log("ID: ", id);
-      console.log("TITLE: ", title);
-      console.log("SERVGROUP: ", servGroup);
-      console.log("DESC: ", desc);
-      console.log("FILE: ", file);
       await createNewServiceService(id, title, servGroup, desc, file, token);
     } catch (error) {
       setError(error.message);
