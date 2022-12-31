@@ -1,12 +1,12 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../contex/AuthContext";
 import Button from "@mui/material/Button";
-//import { ErrorMessage } from "../components/ErrorMessage";
+import InputUnstyled from "@mui/base/InputUnstyled";
 import { updateUser } from "../services";
-//import { useUser } from "../hooks/useUser";
+import { TextField } from "@mui/material";
+import { flexbox } from "@mui/system";
 
 export const ModUserPage = () => {
-  //const { servs, loading, error } = useServs();
   const { user, token } = useContext(AuthContext);
   const [alias, setAlias] = useState("");
   const [fecNac, setFecNac] = useState("");
@@ -16,20 +16,18 @@ export const ModUserPage = () => {
   const [pass1, setPass1] = useState("");
   const [pass2, setPass2] = useState("");
   const [passO, setPassO] = useState("");
-  const [eqPass, setEqPass] = useState("");
+  const [error, setError] = useState("");
 
   if (!user) return <p>Cargando...</p>;
 
-  //console.log(token);
-  //const { data, loading, error } = useUser(token);
-  //console.log(data, alias, fecNac, photo, loading, error);+
   const userName = user.info[0].alias ? user.info[0].alias : user.info[0].email;
   const id = user.info[0].id_user;
 
   const handleSubmit = async () => {
-    //console.log("DATA: ", data);
-    if (pass1 && pass2 && pass1 == pass2) {
-      setEqPass(pass1);
+    if (pass1 && pass2 && pass1 !== pass2) {
+      setError("Las passwords no coinciden");
+      //setEqPass(pass1);
+      return false;
     }
 
     const response = await updateUser(
@@ -37,27 +35,16 @@ export const ModUserPage = () => {
       alias,
       email,
       passO,
-      eqPass,
+      pass1,
       bioText,
       photo,
       fecNac,
       token
     );
-    //console.log(photo);
-    console.log(response);
     window.location.reload();
     return false;
   };
 
-  /*
-    const { token } = useContext(AuthContext);
-    const data = await getMyUserData(token);
-    console.log('DATA::==::', data);
-*/
-
-  //if(loading) return <p>Cargando lista de servicios...</p>;
-  //if(error) return <ErrorMessage message={error} />;
-  //console.log('USERRRRR____', user.info[0].alias ? user.info[0].alias : user.info[0].email);
   return (
     <main className="centered">
       <section>
@@ -65,7 +52,7 @@ export const ModUserPage = () => {
           <h1>Cuenta de {userName}</h1>
           <div>
             <label htmlFor="alias">Alias </label>
-            <input
+            <InputUnstyled
               type="text"
               id="alias"
               name="alias"
@@ -75,7 +62,7 @@ export const ModUserPage = () => {
           </div>
           <div>
             <label htmlFor="email">Email </label>
-            <input
+            <InputUnstyled
               type="email"
               id="email"
               name="email"
@@ -83,45 +70,48 @@ export const ModUserPage = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <fieldset>
+          <fieldset className="chanPass">
             <legend>Cambiar Password </legend>
             <div>
               <label htmlFor="passO">Password Actual</label>
-              <input
+              <InputUnstyled
                 type="password"
                 id="passO"
                 name="passO"
                 value={passO}
                 autoComplete="off"
                 onChange={(e) => setPassO(e.target.value)}
+                style={{ marginRight: "3rem", marginLeft: "1rem" }}
               />
             </div>
             <div>
               <label htmlFor="pass1">Nueva Password</label>
-              <input
+              <InputUnstyled
                 type="password"
                 id="pass1"
                 name="pass1"
                 value={pass1}
                 autoComplete="off"
                 onChange={(e) => setPass1(e.target.value)}
+                style={{ marginRight: "3rem", marginLeft: "1rem" }}
               />
             </div>
             <div>
               <label htmlFor="pass2">Repita Password</label>
-              <input
+              <InputUnstyled
                 type="password"
                 id="pass2"
                 name="pass2"
                 value={pass2}
                 autoComplete="off"
                 onChange={(e) => setPass2(e.target.value)}
+                style={{ marginRight: "3rem", marginLeft: "1rem" }}
               />
             </div>
           </fieldset>
-          <div>
+          <div className="date">
             <label htmlFor="date">Fecha de Nacimiento</label>
-            <input
+            <InputUnstyled
               type="date"
               id="date"
               name="date"
@@ -129,24 +119,29 @@ export const ModUserPage = () => {
               onChange={(e) => setFecNac(e.target.value)}
             />
           </div>
-          <div>
-            <legend>Biografía</legend>
-            <textarea
-              id="comment"
-              name="comment"
-              rows="3"
-              cols="55"
+          <div className="textArea">
+            <TextField
+              id="bioText"
+              name="bioText"
+              label="Biografía"
+              multiline
+              rows={2}
+              defaultValue="Escriba aqui..."
               value={bioText}
               onChange={(e) => setBioText(e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              onChange={(e) => setPhoto(e.target.files[0])}
             />
+          </div>
+          <div className="upButton">
+            <Button variant="contained" component="label">
+              Subir Avatar
+              <InputUnstyled
+                type="file"
+                id="photo"
+                name="photo"
+                onChange={(e) => setPhoto(e.target.files[0])}
+                hidden
+              />
+            </Button>
           </div>
           {photo ? (
             <p>
@@ -154,6 +149,9 @@ export const ModUserPage = () => {
                 src={URL.createObjectURL(photo)}
                 alt="Nuevo avatar escogido"
                 style={{
+                  margin: "auto",
+                  paddingLeft: "10rem",
+                  paddingTop: "1rem",
                   width: "100px",
                   height: "100px",
                   objectFit: "cover",
@@ -161,10 +159,15 @@ export const ModUserPage = () => {
               />
             </p>
           ) : null}
-          <Button variant="contained" onClick={handleSubmit}>
+          <Button
+            variant="contained"
+            onClick={handleSubmit}
+            style={{ marginTop: "1rem" }}
+          >
             Actualizar Perfil
           </Button>
         </form>
+        <p>{error}</p>
       </section>
     </main>
   );

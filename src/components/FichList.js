@@ -1,8 +1,6 @@
 import { Fich } from "./Fich";
-//import { useEffect, useState } from 'react';
 
 export const FichList = ({ fichs }) => {
-  console.log(fichs);
   return fichs.length ? (
     <ul>
       {fichs.map((fich) => (
@@ -12,6 +10,6 @@ export const FichList = ({ fichs }) => {
       ))}
     </ul>
   ) : (
-    <p>No hay ficheros para este servicio</p>
+    <p className="info">No hay ficheros para este servicio</p>
   );
 };

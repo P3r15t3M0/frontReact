@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { logUserService } from "../services";
 import { AuthContext } from "../contex/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 export const LogPage = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,13 @@ export const LogPage = () => {
             required
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button>LogIn</button>
+          <Button
+            variant="contained"
+            style={{ marginTop: "1.4rem" }}
+            type="submit"
+          >
+            LogIn
+          </Button>
         </form>
         {error ? <p>{error}</p> : null}
       </section>

@@ -8,7 +8,6 @@ import { ErrorMessage } from "../components/ErrorMessage";
 export const HomePage = () => {
   const { servs, loading, error } = useServs();
   const { user } = useContext(AuthContext);
-  //const servi = useLocation();
 
   if (loading) return <p>Cargando lista de servicios...</p>;
   if (error) return <ErrorMessage message={error} />;

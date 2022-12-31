@@ -1,5 +1,3 @@
-//import jwt_decode from "jwt-decode";
-
 export const getAllServs = async () => {
   const response = await fetch(`${process.env.REACT_APP_BACKEND_ROUTE}`);
 
@@ -66,19 +64,16 @@ export const logUserService = async ({ email, password }) => {
 };
 
 export const getMyUserData = async ({ token }) => {
-  //const tDec = jwt_decode(token);
   const response = await fetch(
     `${process.env.REACT_APP_BACKEND_ROUTE}userParams`,
     {
       headers: {
         Authorization: token,
       },
-      //body: JSON.stringify(tDec.id),
     }
   );
 
   const json = await response.json();
-  //console.log(json);
   if (!response.ok) {
     throw new Error(json.message);
   }
@@ -88,7 +83,6 @@ export const getMyUserData = async ({ token }) => {
 
 export const getUserById = async (token, idCreator) => {
   const requestOptions = {
-    //method: 'GET',
     headers: {
       Authorization: `${token}`,
       "Content-Type": "application/json",
@@ -102,7 +96,6 @@ export const getUserById = async (token, idCreator) => {
   );
 
   const json = await response.json();
-  //console.log('JSONUSER', json);
   if (!response.ok) {
     throw new Error(json.message);
   }
@@ -251,7 +244,6 @@ export const jobChecker = async (idUs, idServ, token) => {
     requestOptions
   );
   const json = await response.json();
-  //console.log('response', response);
   if (!response.ok) {
     throw new Error(json.message);
   }
@@ -277,7 +269,6 @@ export const uploadFile = async (idServ, idUs, file, token) => {
     requestOptions
   );
   const json = await response.json();
-  //console.log('response', json);
   if (!response.ok) {
     throw new Error(json.message);
   }
@@ -320,7 +311,6 @@ export const updateUser = async (
     requestOptions
   );
   const json = await response.json();
-  //console.log('response', json);
   if (!response.ok) {
     throw new Error(json.message);
   }
@@ -364,7 +354,6 @@ export const solvJob = async (idServ, token) => {
     requestOptions
   );
   const json = await response.json();
-  //console.log('response', json);
   if (!response.ok) {
     throw new Error(json.message);
   }

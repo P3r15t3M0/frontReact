@@ -1,8 +1,6 @@
 import { Comment } from "./Comment";
-//import { useEffect, useState } from 'react';
 
 export const ComList = ({ comms }) => {
-  console.log(comms);
   return comms.length ? (
     <ul>
       {comms.map((comm) => (

@@ -6,8 +6,6 @@ const useServ = (id, token) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  //console.log("ID Y TOKEN =====>>>", id, token);
-
   useEffect(() => {
     const loadServ = async () => {
       try {

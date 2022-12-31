@@ -1,7 +1,12 @@
 * {
   padding: 0;
   margin: 0;
+}
+
+body {
+  background-color: #fafaf5;
   box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 div#root {
@@ -10,12 +15,48 @@ div#root {
   flex-direction: column;
 }
 
-div#root > header {
+header {
   text-align: center;
-  background-color: gray;
-  /*height: 60px;*/
+  background-color: #e0461b;
   display: flex;
   flex-direction: column;
+}
+
+header > h1 {
+  padding-top: 1rem;
+  padding-bottom: 0.2rem;
+}
+
+header a {
+  color: white;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  padding-bottom: 0.4rem;
+  margin-right: 0.6rem;
+}
+
+.headerInfo > p {
+  margin-right: 0.6rem;
+}
+
+.headerInfo > span {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+header a:hover,
+.headerInfo > span:hover {
+  color: #0956ca;
+  font-weight: bold;
+  text-shadow: 1.2px 1.2px black;
+}
+
+.userMail:hover {
+  font-size: 1.1rem;
 }
 
 ul {
@@ -27,6 +68,7 @@ nav {
   flex-direction: row;
   margin-left: auto;
   align-items: center;
+  color: white;
 }
 
 nav ul {
@@ -84,7 +126,7 @@ button {
 ul.listServices {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
 }
 
 ul.listServices li {
@@ -99,6 +141,7 @@ div#root > footer {
   color: white;
   justify-content: center;
   padding: 0.7rem;
+  margin-top: 2rem;
 }
 
 a {
@@ -111,15 +154,186 @@ a {
   flex-direction: column;
 }
 
+.input-form > fieldset > div {
+  margin: 0.5rem 0.4rem;
+}
+
 .input-form {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  margin: 1.4rem;
+}
+
+.groupSelect {
+  margin-right: 0.6rem;
+}
+
+.createServButtons {
+  display: flex;
+  flex-direction: column;
+}
+
+.createServButtons > button {
+  margin: 0.6rem 0;
+}
+
+.servCent {
+  display: flex;
+  justify-content: center;
+}
+
+.servCent > section > section > p,
+.servCent > section > section > h3 {
+  display: flex;
+  margin: 0.8rem;
+  justify-content: center;
+}
+
+.fichs > ul {
+  display: flex;
+  justify-content: center;
+  margin-top: 2em;
+  width: 80%;
+  flex-wrap: wrap;
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fichs > ul {
+  display: flex;
+  flex-direction: row;
+}
+
+.fichs > ul > li {
+  margin: 1rem;
+}
+
+.fileAndCom {
+  display: flex;
+  flex-direction: column;
+}
+
+.fileAndCom > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.fileAndCom > div > button {
+  margin-left: 2rem;
+}
+
+.comments > ul {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+.comments {
+  display: flex;
+  justify-content: center;
   margin: 2rem;
+  margin-bottom: 5rem;
+}
+
+.info {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+#comment {
+  width: 30rem;
+}
+
+.taskCard[data-color="red"]:hover {
+  animation: shadow-pop-tr-red 0.3s cubic-bezier(0.77, 0, 0.175, 1) alternate
+    both;
+}
+
+.taskCard[data-color="yellow"]:hover {
+  animation: shadow-pop-tr-yellow 0.3s cubic-bezier(0.77, 0, 0.175, 1) alternate
+    both;
+}
+
+.taskCard[data-color="green"]:hover {
+  animation: shadow-pop-tr-green 0.3s cubic-bezier(0.77, 0, 0.175, 1) alternate
+    both;
+}
+
+.taskCard > a > article > p {
+  margin-top: 0.8rem;
+  margin-bottom: 0.2rem;
+}
+
+.taskCard > a > article > h3,
+.taskCard > a > article:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes shadow-pop-tr-red {
+  0% {
+    box-shadow: 0 0 #bd4330, 0 0 #bd4330, 0 0 #bd4330, 0 0 #bd4330, 0 0 #bd4330,
+      0 0 #bd4330, 0 0 #bd4330, 0 0 #bd4330;
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    box-shadow: 1px -1px #bd4330, 2px -2px #bd4330, 3px -3px #bd4330,
+      4px -4px #bd4330, 5px -5px #bd4330, 6px -6px #bd4330, 7px -7px #bd4330,
+      8px -8px #bd4330;
+    transform: translateX(-8px) translateY(8px);
+  }
+}
+
+@keyframes shadow-pop-tr-yellow {
+  0% {
+    box-shadow: 0 0 #d4c32e, 0 0 #d4c32e, 0 0 #d4c32e, 0 0 #d4c32e, 0 0 #d4c32e,
+      0 0 #d4c32e, 0 0 #d4c32e, 0 0 #d4c32e;
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    box-shadow: 1px -1px #d4c32e, 2px -2px #d4c32e, 3px -3px #d4c32e,
+      4px -4px #d4c32e, 5px -5px #d4c32e, 6px -6px #d4c32e, 7px -7px #d4c32e,
+      8px -8px #d4c32e;
+    transform: translateX(-8px) translateY(8px);
+  }
+}
+
+@keyframes shadow-pop-tr-green {
+  0% {
+    box-shadow: 0 0 #4b9a41, 0 0 #4b9a41, 0 0 #4b9a41, 0 0 #4b9a41, 0 0 #4b9a41,
+      0 0 #4b9a41, 0 0 #4b9a41, 0 0 #4b9a41;
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    box-shadow: 1px -1px #4b9a41, 2px -2px #4b9a41, 3px -3px #4b9a41,
+      4px -4px #4b9a41, 5px -5px #4b9a41, 6px -6px #4b9a41, 7px -7px #4b9a41,
+      8px -8px #4b9a41;
+    transform: translateX(-8px) translateY(8px);
+  }
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.buttons > button {
+  margin-left: 1.5rem;
 }
 
 .servPage {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
 }
 
 .centered > section > form > div {
@@ -129,6 +343,37 @@ a {
   padding-top: 0.2rem;
   line-height: 0.5rem;
   align-items: center;
+}
+
+#alias {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.chanPass > div:last-child {
+  margin-bottom: 1rem;
+}
+
+.date {
+  margin-top: 0.4rem;
+}
+
+.textArea {
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+#bioText {
+  width: 20rem;
+}
+
+label[for="alias"] {
+  margin-top: 0.6rem;
+}
+
+.upButton > div {
+  margin-bottom: 5rem;
 }
 
 .centered > section > form > div > input {
@@ -141,7 +386,7 @@ a {
 .centered > section > form > fieldset > div {
   display: flex;
   justify-content: space-between;
-  padding-left: 3.5rem;
+  padding-left: 2.5rem;
   line-height: 0.5rem;
   margin: 0.5rem 0rem 0.2rem 0.2rem;
 }
@@ -156,14 +401,6 @@ a {
 
 .centered > section > form > fieldset > div > label {
   margin-top: 0.4rem;
-}
-
-.centered > section > form > fieldset > div > input {
-  display: flex;
-  justify-content: center;
-  padding-left: 1rem;
-  margin-right: 4.2rem;
-  margin-bottom: 0.6rem;
 }
 
 .centered > section > form > div > textarea {

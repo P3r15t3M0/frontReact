@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-//import { Service } from '../components/Service';
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contex/AuthContext";
@@ -18,14 +17,10 @@ import {
 } from "../services/index";
 import { FichList } from "../components/FichList";
 import { ComList } from "../components/ComList";
-//import { useComms } from "../hooks/useComms";
-//import { useJobs } from "../hooks/useJobs";
-//import { cardActionsClasses } from "@mui/material";
 import { useServ } from "../hooks/useServ";
-//import { useUser } from '../hooks/useUser';
 import { ErrorMessage } from "../components/ErrorMessage";
 import { newCommentaryService } from "../services/index";
-//import { tabScrollButtonClasses } from "@mui/material";
+import { TextField } from "@mui/material";
 
 export const ServPage = () => {
   const { id } = useParams();
@@ -33,11 +28,7 @@ export const ServPage = () => {
   const [commentText, setCommentText] = useState("");
   const [err, setErr] = useState("");
   const [file, setFile] = useState("");
-
-  //console.log("ID=========>>>", id);
-
   const { user, token } = useContext(AuthContext);
-  //console.log("user Y TOKEN =====>>>", user, token);
 
   const { serv, error, loading } = useServ(id, token);
 
@@ -70,9 +61,11 @@ export const ServPage = () => {
   const handleComInput = async (e) => {
     try {
       e.preventDefault();
-      await newCommentaryService(id, user.info[0].email, commentText, token);
-      window.location.reload();
-      return false;
+      if (commentText !== "") {
+        await newCommentaryService(id, user.info[0].email, commentText, token);
+        window.location.reload();
+        return false;
+      }
     } catch (error) {
       setErr(error);
     } finally {
@@ -81,20 +74,17 @@ export const ServPage = () => {
   };
 
   const handleUploadFile = async () => {
-    //console.log(file);
     const response = await uploadFile(id, user.info[0].id_user, file, token);
     window.location.reload();
     return false;
   };
 
-  //console.log("SERV::::::::::>", serv);
-
   return (
-    <main>
+    <main className="servCent">
       <section className="servPage">
         {user && Object.keys(serv).length !== 0 ? (
           <section className="servInfoCenter">
-            <h3>{serv.message.infoService[0].nombre_servicio}</h3>
+            <h3>{serv.message.infoService[0].nombre_servicio.toUpperCase()}</h3>
             <p>
               <b>Creado por:</b>{" "}
               {serv.message.infoService[0].alias
@@ -155,69 +145,92 @@ export const ServPage = () => {
                 Borrar
               </Button>
             </div>
-            <div>
+            <div className="fichs">
               <FichList fichs={serv.message.fichs} />
             </div>
 
             <div>
-              <form className="new-tweet">
-                <fieldset>
-                  <legend>Máx 150 caracteres</legend>
-                  <textarea
+              <form className="fileAndCom">
+                <div>
+                  <Button
+                    variant="contained"
+                    component="label"
+                    disabled={
+                      (serv.message.resolved[0].id_uReciber ===
+                        user.info[0].id_user &&
+                        serv.message.resolved[0].resuelto === 0) ||
+                      serv.message.infoService[0].id_user ===
+                        user.info[0].id_user
+                        ? false
+                        : true
+                    }
+                  >
+                    Seleccionar Archivo
+                    <input
+                      type="file"
+                      name="file"
+                      id="file"
+                      accept="application/pdf"
+                      disabled={
+                        (serv.message.resolved[0].id_uReciber ===
+                          user.info[0].id_user &&
+                          serv.message.resolved[0].resuelto === 0) ||
+                        serv.message.infoService[0].id_user ===
+                          user.info[0].id_user
+                          ? false
+                          : true
+                      }
+                      onChange={(e) => setFile(e.target.files[0])}
+                      hidden
+                    ></input>
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    startIcon={<CloudUploadIcon />}
+                    color="primary"
+                    disabled={
+                      (serv.message.resolved[0].id_uReciber ===
+                        user.info[0].id_user &&
+                        serv.message.resolved[0].resuelto === 0) ||
+                      serv.message.infoService[0].id_user ===
+                        user.info[0].id_user
+                        ? false
+                        : true
+                    }
+                    onClick={handleUploadFile}
+                  >
+                    Subir Archivo
+                  </Button>
+                </div>
+                <div>
+                  <TextField
                     id="comment"
-                    name="comment"
-                    rows="3"
-                    cols="55"
+                    label="Máx 150 caracteres"
+                    multiline
+                    rows={2}
+                    columns={30}
+                    defaultValue="Escriba aqui..."
+                    variant="standard"
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
-                  ></textarea>
-                </fieldset>
-                <input
-                  type="file"
-                  name="file"
-                  id="file"
-                  disabled={
-                    (serv.message.resolved[0].id_uReciber ===
-                      user.info[0].id_user &&
-                      serv.message.resolved[0].resuelto === 0) ||
-                    serv.message.infoService[0].id_user === user.info[0].id_user
-                      ? false
-                      : true
-                  }
-                  onChange={(e) => setFile(e.target.files[0])}
-                ></input>
-                <Button
-                  variant="outlined"
-                  startIcon={<CloudUploadIcon />}
-                  color="primary"
-                  disabled={
-                    (serv.message.resolved[0].id_uReciber ===
-                      user.info[0].id_user &&
-                      serv.message.resolved[0].resuelto === 0) ||
-                    serv.message.infoService[0].id_user === user.info[0].id_user
-                      ? false
-                      : true
-                  }
-                  onClick={handleUploadFile}
-                >
-                  Subir Archivo
-                </Button>
+                  />
+                  <Button
+                    variant="outlined"
+                    startIcon={<ChatIcon />}
+                    color="secondary"
+                    onClick={handleComInput}
+                  >
+                    Comentar
+                  </Button>
+                </div>
               </form>
-              <div>
-                <Button
-                  variant="outlined"
-                  startIcon={<ChatIcon />}
-                  color="secondary"
-                  onClick={handleComInput}
-                >
-                  Comentar
-                </Button>
+              <div className="comments">
+                {serv.message.comentarios.length > 0 ? (
+                  <ComList comms={serv.message.comentarios} />
+                ) : (
+                  <p>Aún no hay comentarios para este servicio</p>
+                )}
               </div>
-              {serv.message.comentarios.length > 0 ? (
-                <ComList comms={serv.message.comentarios} />
-              ) : (
-                <p>Aún no hay comentarios para este servicio</p>
-              )}
             </div>
           </section>
         ) : null}
