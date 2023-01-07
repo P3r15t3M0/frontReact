@@ -17,7 +17,7 @@ export const Auth = () => {
       </p>
       <Avatar
         alt={`${user.info[0].alias ? user.info[0].alias : user.info[0].email}`}
-        src={`${process.env.REACT_APP_BACKEND_ROUTE}uploads/${user.info[0].foto_path}`}
+        src={`${process.env.REACT_APP_BACKEND_ROUTE}${user.info[0].foto_path}`}
         sx={{ width: 50, height: 50, marginRight: 2 }}
       />
       <span onClick={() => logout()}>

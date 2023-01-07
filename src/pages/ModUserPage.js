@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import InputUnstyled from "@mui/base/InputUnstyled";
 import { updateUser } from "../services";
 import { TextField } from "@mui/material";
-import { flexbox } from "@mui/system";
 
 export const ModUserPage = () => {
   const { user, token } = useContext(AuthContext);
@@ -26,7 +25,6 @@ export const ModUserPage = () => {
   const handleSubmit = async () => {
     if (pass1 && pass2 && pass1 !== pass2) {
       setError("Las passwords no coinciden");
-      //setEqPass(pass1);
       return false;
     }
 

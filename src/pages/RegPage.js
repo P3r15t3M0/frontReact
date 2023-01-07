@@ -21,7 +21,6 @@ export const RegPage = () => {
 
     try {
       await registerUserService({ email, password: pass1 });
-      //await updateUser({alias, bioText, photo, fecNac});
       navigate("/login");
     } catch (error) {
       setError(error.message);

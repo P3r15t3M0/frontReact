@@ -208,8 +208,6 @@ export const ServPage = () => {
                     label="Máx 150 caracteres"
                     multiline
                     rows={2}
-                    columns={30}
-                    defaultValue="Escriba aqui..."
                     variant="standard"
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
