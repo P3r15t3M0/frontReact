@@ -24,7 +24,7 @@ export const ServList = ({ servs }) => {
         <li
           key={serv.id_service}
           className="taskCard"
-          data-color={styleColor(serv)}
+          data-color={user ? styleColor(serv) : null}
         >
           {user ? (
             <Link to={`/serv/${serv.id_service}`}>
