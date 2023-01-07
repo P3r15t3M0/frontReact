@@ -20,9 +20,11 @@ export const Auth = () => {
         src={`${process.env.REACT_APP_BACKEND_ROUTE}${user.info[0].foto_path}`}
         sx={{ width: 50, height: 50, marginRight: 2 }}
       />
-      <span onClick={() => logout()}>
-        LogOut <LogoutIcon />
-      </span>
+      <Link to={"/"}>
+        <span onClick={() => logout()}>
+          LogOut <LogoutIcon />
+        </span>
+      </Link>
     </div>
   ) : (
     <ul>
